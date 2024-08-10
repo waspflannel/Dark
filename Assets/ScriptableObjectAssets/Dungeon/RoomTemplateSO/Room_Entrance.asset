@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18dea0ab4ade49d459fd620e992035a4, type: 3}
+  m_Name: Room_Entrance
+  m_EditorClassIdentifier: 
+  guid: 84b31e128866243498dec622f4264b42
+  prefab: {fileID: 7158218646203396361, guid: d006c462a9af3c84bbe73b03d85e3604, type: 3}
+  previousPrefab: {fileID: 7158218646203396361, guid: d006c462a9af3c84bbe73b03d85e3604, type: 3}
+  roomNodeType: {fileID: 11400000, guid: 713f9a7f5296c29438be8544c5edb106, type: 2}
+  spawnLocation: {x: 0, y: 0}
+  spawnPositionArray: []
