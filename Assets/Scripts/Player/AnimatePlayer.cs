@@ -8,11 +8,10 @@ using UnityEngine;
 public class AnimatePlayer : MonoBehaviour
 {
     private Player player;
-
-    private bool isBackwards = false;
+                        
     private void Awake()
     {
-        
+
         player = GetComponent<Player>();
     }
     private void OnEnable()
@@ -36,9 +35,9 @@ public class AnimatePlayer : MonoBehaviour
 
     private void FallingEvent_OnFallEvent(FallingEvent fallingEvent, FallingEventArgs fallingEventArgs)
     {
-        if(fallingEventArgs._isJumpFalling)
+        if (fallingEventArgs._isJumpFalling)
             SetJumpFallAnimationParameters();
-    }   
+    }
 
     public void JumpEvent_OnJump(JumpEvent jumpEvent, JumpEventArgs jumpEventArgs)
     {
@@ -50,13 +49,13 @@ public class AnimatePlayer : MonoBehaviour
         if (movementByVelocityEventArgs.isBackwards)
         {
             SetMovementAnimationParameters();
-            
+
         }
         else
         {
             SetBackwardsMovementAnimationParametrs();
         }
-        
+
     }
 
     public void IdleEvent_OnIdle(IdleEvent idleEvent)
@@ -99,7 +98,7 @@ public class AnimatePlayer : MonoBehaviour
         player.animator.SetBool(Settings.isBackwards, true);
     }
 
-    
+
     private void SetJumpFallAnimationParameters()
     {
         Debug.Log("setting land");

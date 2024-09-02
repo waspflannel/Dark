@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameResources : MonoBehaviour
 {
-    private static GameResources instance;
+    private static GameResources instance;  
 
 
     public static GameResources Instance
@@ -21,5 +21,6 @@ public class GameResources : MonoBehaviour
 
 
     public RoomNodeTypeListSO roomNodeTypeList;
+    public GameObject player;
 
 }
