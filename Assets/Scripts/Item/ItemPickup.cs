@@ -17,11 +17,12 @@ public class ItemPickup : MonoBehaviour
     {
         Item item = collision.GetComponent<Item>();
 
-        if(item != null)
+        if (item != null)
         {
             ItemDetails itemDetails = InventoryManager.Instance.GetItemDetails(item.ItemCode);
             Debug.Log(itemDetails.itemCode);
         }
+    }
 
 
 }
