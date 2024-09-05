@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc4f1409167298346b5b421461ab6203, type: 3}
+  m_Name: ItemListSO
+  m_EditorClassIdentifier: 
+  itemDetails:
+  - itemCode: 1
+    itemType: 0
+    itemName: Health Buff
+    itemDescription: Gives a buff to  health
+    itemSprite: {fileID: -1236000406, guid: 9aece8a02c89fb243a05102e4623e87c, type: 3}
+    itemUseGridRadius: 0
+    canBePickedUp: 1
+    canBeDropped: 1
+    canBeEaten: 0
+    canBePlaced: 0
+  - itemCode: 2
+    itemType: 0
+    itemName: Damage Buff
+    itemDescription: 
+    itemSprite: {fileID: -977896493569848924, guid: 15c04f2bbd03323479eec8bf98421cf9, type: 3}
+    itemUseGridRadius: 0
+    canBePickedUp: 1
+    canBeDropped: 1
+    canBeEaten: 0
+    canBePlaced: 0
+  - itemCode: 3
+    itemType: 1
+    itemName: Healing Food
+    itemDescription: Eat to heal
+    itemSprite: {fileID: -2144768094, guid: 9aece8a02c89fb243a05102e4623e87c, type: 3}
+    itemUseGridRadius: 0
+    canBePickedUp: 1
+    canBeDropped: 0
+    canBeEaten: 1
+    canBePlaced: 0
