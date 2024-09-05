@@ -17,11 +17,11 @@ MonoBehaviour:
   childRoomNodeIDList: []
   roomNodeGraph: {fileID: 11400000}
   roomNodeTypeList: {fileID: 11400000, guid: c8c10afcb76b6f04ab0728a030df0044, type: 2}
-  roomNodeType: {fileID: 11400000, guid: 4f3c391571d2a7343a100b6823818ad3, type: 2}
+  roomNodeType: {fileID: 11400000, guid: 3b1e8302bcd494c44af2a96c9522eb0e, type: 2}
   rect:
     serializedVersion: 2
-    x: 639
-    y: 217
+    x: 614
+    y: 120
     width: 200
     height: 150
   isLeftClickDragging: 0

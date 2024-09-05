@@ -15,3 +15,25 @@ public enum AimDirection
     Right
 }
 
+public enum GameState
+{
+    gameStareted,
+    playingLevel,
+    engagingEnemies,
+    bossStage,
+    engagingBoss,
+    levelCompleted,
+    gamePaused,
+    gameWon,
+    gameLost,
+    restartGame,
+}
+
+public enum ItemType
+{
+    buffItem,
+    consumableItem,
+    essenceItem,    
+    none,
+    count
+}

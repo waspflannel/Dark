@@ -13,8 +13,6 @@ MonoBehaviour:
   m_Name: RoomNodeTypeListSO
   m_EditorClassIdentifier: 
   list:
-  - {fileID: 11400000, guid: 195b94e9ca5f8c24a83a30d67422d600, type: 2}
-  - {fileID: 11400000, guid: e9a8b0bdfb3e99041936822e9bc635a1, type: 2}
   - {fileID: 11400000, guid: 3b1e8302bcd494c44af2a96c9522eb0e, type: 2}
   - {fileID: 11400000, guid: 7e2865a90855207429d272fff7fe745e, type: 2}
   - {fileID: 11400000, guid: 713f9a7f5296c29438be8544c5edb106, type: 2}
