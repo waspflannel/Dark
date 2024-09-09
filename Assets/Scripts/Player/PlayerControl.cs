@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,13 +18,12 @@ public class PlayerControl : MonoBehaviour
 
 
     private bool _isJumpFalling;
+
     [SerializeField] private Transform _groundCheckPoint;
     [SerializeField] private Vector2 _groundCheckSize = new Vector2(0.49f, 0.03f);
     [SerializeField] private LayerMask _groundLayer;
 
     private Vector2 direction;
-    private bool isBackwards = false;
-    private AimDirection facingDirection;
 
     private float horizontalMovement;
     private float verticalMovement;
@@ -46,7 +46,6 @@ public class PlayerControl : MonoBehaviour
     {
         UpdateTimeVariables();
         ProcessMovementInput();
-        ProcessWeaponInput();
     }
 
     private void UpdateTimeVariables()
@@ -63,15 +62,16 @@ public class PlayerControl : MonoBehaviour
     private void FixedUpdate()
     {
         direction = new Vector2(horizontalMovement, 0);
-        ProcessBackwards();
+        IsFacingRight = CheckFaceDirection(horizontalMovement);
+        Debug.Log(IsFacingRight);
         if (direction != Vector2.zero && !isInAir)
         {
-            player.movementByVelocityEvent.CallMovementByVelocityEvent(direction, moveSpeed, IsJumping, _isJumpFalling, LastOnGroundTime , isBackwards);
+            player.movementByVelocityEvent.CallMovementByVelocityEvent(direction, moveSpeed, IsJumping, _isJumpFalling, LastOnGroundTime , IsFacingRight);
         }
         else if (!isInAir)
         {
             
-            player.idleEvent.CallIdleEvent();
+            player.idleEvent.CallIdleEvent(IsFacingRight);
         }
     }
 
@@ -79,9 +79,7 @@ public class PlayerControl : MonoBehaviour
     private void ProcessMovementInput()
     {
         horizontalMovement = Input.GetAxisRaw("Horizontal");
-        //verticalMovement = Input.GetAxisRaw("Vertical");
-
-
+        
         if (Input.GetKeyDown(KeyCode.Space))
         {
             OnJumpInput();
@@ -92,7 +90,6 @@ public class PlayerControl : MonoBehaviour
         if (IsJumping && rb.velocity.y < 0)
         {
             _isJumpFalling = true;
-            /////
             player.fallingEvent.CallFallingEvent(_isJumpFalling);
             IsJumping = false;
         }
@@ -108,6 +105,19 @@ public class PlayerControl : MonoBehaviour
         }
 
         AdjustGravityAndVelocity();
+    }
+
+    private bool CheckFaceDirection(float horizontalMovement)
+    {
+        if (horizontalMovement > 0 && !IsFacingRight)
+        {
+            IsFacingRight = true;
+        }
+        else if (horizontalMovement < 0 && IsFacingRight)
+        {
+            IsFacingRight = false;
+        }
+        return IsFacingRight;
     }
 
     private void CheckGroundStatus()
@@ -179,41 +189,5 @@ public class PlayerControl : MonoBehaviour
     }
 
 
-    private bool ProcessBackwards()
-    {
-        float xDirection = direction.x;
- 
-        if (xDirection == 0)
-        {
-            isBackwards = false;
-        }
-
-        else if ((xDirection == 1 && facingDirection == AimDirection.Left) ||
-            (xDirection == -1 && facingDirection == AimDirection.Right))
-        {
-            isBackwards = true;
-        }
-        else
-        {
-            isBackwards = false;
-        }
-        return isBackwards;
-    }
-
-    private void ProcessWeaponInput()
-    {
-        AimDirection playerAimDirection;
-        float playerAngleDegrees;
-        AimWeaponInput(out playerAimDirection, out playerAngleDegrees);
-        facingDirection = playerAimDirection;
-    }
-
-    private void AimWeaponInput(out AimDirection playerAimDirection, out float playerAngleDegrees)
-    {
-        Vector3 mouseWorldPosition = HelperUtilities.GetMouseWorldPosition();
-        Vector3 playerDirection = mouseWorldPosition - transform.position;
-        playerAngleDegrees = HelperUtilities.GetAngleFromVector(playerDirection);
-        playerAimDirection = HelperUtilities.GetAimDirection(playerAngleDegrees);
-        player.aimWeaponEvent.CallAimWeaponEvent(playerAimDirection, playerAngleDegrees);
-    }
+  
 }

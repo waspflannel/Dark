@@ -8,10 +8,12 @@ public class MovementByVelocityEvent : MonoBehaviour
 
     public event Action<MovementByVelocityEvent , MovementByVelocityEventArgs> OnMovementByVelocity;
 
-    public void CallMovementByVelocityEvent(Vector2 moveDirection , float moveSpeed , bool isJumping , bool _isJumpFalling , float LastOnGroundTime , bool isBackwards)
+    public void CallMovementByVelocityEvent(Vector2 moveDirection, float moveSpeed, bool isJumping, bool _isJumpFalling, float LastOnGroundTime, bool IsFacingRight)
     {
         OnMovementByVelocity?.Invoke(this, new MovementByVelocityEventArgs { moveDirection = moveDirection,
-            moveSpeed = moveSpeed, isJumping = isJumping, _isJumpFalling = _isJumpFalling, LastOnGroundTime = LastOnGroundTime , isBackwards = isBackwards});
+            moveSpeed = moveSpeed, isJumping = isJumping, _isJumpFalling = _isJumpFalling, LastOnGroundTime = LastOnGroundTime,
+            IsFacingRight = IsFacingRight
+        });
     }
 }
 public class MovementByVelocityEventArgs : EventArgs
@@ -21,6 +23,5 @@ public class MovementByVelocityEventArgs : EventArgs
     public bool isJumping;
     public bool _isJumpFalling;
     public float LastOnGroundTime;
-    public bool isBackwards;
-
+    public bool IsFacingRight;
 }
