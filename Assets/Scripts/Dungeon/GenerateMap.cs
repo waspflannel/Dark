@@ -9,7 +9,6 @@ public class GenerateMap : SingletonMonobehavoiur<GenerateMap>
 
     private List<RoomTemplateSO> currentLevelMaps;
     private RoomNodeTypeListSO roomNodeTypeList;
-    private bool shouldGenerateEntrance = true;
     [SerializeField] private GameObject player;
 
     [SerializeField]private ScreenFade screenFade;
