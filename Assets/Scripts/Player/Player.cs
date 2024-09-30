@@ -22,6 +22,7 @@ using UnityEngine.Rendering;
 [RequireComponent(typeof(MovementByVelocityEvent))]
 
 [RequireComponent(typeof(FallingEvent))]
+[RequireComponent(typeof(InventoryUpdateEvent))]
 
 [RequireComponent(typeof(JumpEvent))]
 #endregion REQUIRE COMPONENTS
@@ -36,9 +37,11 @@ public class Player : MonoBehaviour
     [HideInInspector] public SpriteRenderer spriteRenderer;
     [HideInInspector] public Animator animator;
     [HideInInspector] public FallingEvent fallingEvent;
+    [HideInInspector] public InventoryUpdateEvent inventoryUpdateEvent;
 
     private void Awake()
     {
+        inventoryUpdateEvent = GetComponent<InventoryUpdateEvent>();
         health = GetComponent<Health>();
         idleEvent = GetComponent<IdleEvent>();
         jumpEvent = GetComponent<JumpEvent>();

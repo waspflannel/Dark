@@ -15,5 +15,8 @@ public static class Settings
     public static int isBackwards = Animator.StringToHash("isBackwards");
     #endregion Animation Parameters
 
+    public static int playerInitialInventoryCapacity = 24;
+    public static int playerMaximumInventoryCapacity = 48;
+
 }
 

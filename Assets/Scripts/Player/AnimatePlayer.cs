@@ -16,7 +16,6 @@ public class AnimatePlayer : MonoBehaviour
     }
     private void OnEnable()
     {
-        Debug.Log("enabling");
         player.movementByVelocityEvent.OnMovementByVelocity += MovementByVelocityEvent_OnMovementByVelocity;
         player.idleEvent.OnIdle += IdleEvent_OnIdle;
         player.aimWeaponEvent.OnAimWeapon += AimWeaponEvent_OnAimWeapon;
@@ -60,20 +59,17 @@ public class AnimatePlayer : MonoBehaviour
 
     public void IdleEvent_OnIdle(IdleEvent idleEvent)
     {
-        //Debug.Log("running idle");
         SetIdleAnimationParameters();
     }
 
     public void AimWeaponEvent_OnAimWeapon(AimWeaponEvent aimWeaponEvent, AimWeaponEventArgs aimWeaponEventArgs)
     {
-        //Debug.Log("running aim");
         InitializeAimAnimationParameters();
         SetAimWeaponAnimationParameters(aimWeaponEventArgs.aimDirection);
     }
 
     private void SetJumpAnimationParameters()
     {
-        Debug.Log("setting jump");
         player.animator.SetBool(Settings.isMoving, false);
         player.animator.SetBool(Settings.isIdle, false);
         player.animator.SetBool(Settings.isJumping, true);
@@ -101,7 +97,6 @@ public class AnimatePlayer : MonoBehaviour
 
     private void SetJumpFallAnimationParameters()
     {
-        Debug.Log("setting land");
         player.animator.SetBool(Settings.isMoving, false);
         player.animator.SetBool(Settings.isIdle, false);
         player.animator.SetBool(Settings.isJumping, false);
@@ -112,7 +107,6 @@ public class AnimatePlayer : MonoBehaviour
 
     private void SetIdleAnimationParameters()
     {
-        //Debug.Log("idling1");
         player.animator.SetBool(Settings.isMoving, false);
         player.animator.SetBool(Settings.isJumping, false);
         player.animator.SetBool(Settings.isIdle, true);

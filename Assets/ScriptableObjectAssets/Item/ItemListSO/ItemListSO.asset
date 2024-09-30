@@ -23,23 +23,3 @@ MonoBehaviour:
     canBeDropped: 1
     canBeEaten: 0
     canBePlaced: 0
-  - itemCode: 2
-    itemType: 0
-    itemName: Damage Buff
-    itemDescription: 
-    itemSprite: {fileID: -977896493569848924, guid: 15c04f2bbd03323479eec8bf98421cf9, type: 3}
-    itemUseGridRadius: 0
-    canBePickedUp: 1
-    canBeDropped: 1
-    canBeEaten: 0
-    canBePlaced: 0
-  - itemCode: 3
-    itemType: 1
-    itemName: Healing Food
-    itemDescription: Eat to heal
-    itemSprite: {fileID: -2144768094, guid: 9aece8a02c89fb243a05102e4623e87c, type: 3}
-    itemUseGridRadius: 0
-    canBePickedUp: 1
-    canBeDropped: 0
-    canBeEaten: 1
-    canBePlaced: 0
