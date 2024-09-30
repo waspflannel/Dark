@@ -8,17 +8,20 @@ using UnityEngine;
 public class AnimatePlayer : MonoBehaviour
 {
     private Player player;
-                        
+    private SpriteRenderer spriteRenderer;
+
     private void Awake()
     {
 
         player = GetComponent<Player>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+
     }
     private void OnEnable()
     {
+
         player.movementByVelocityEvent.OnMovementByVelocity += MovementByVelocityEvent_OnMovementByVelocity;
         player.idleEvent.OnIdle += IdleEvent_OnIdle;
-        player.aimWeaponEvent.OnAimWeapon += AimWeaponEvent_OnAimWeapon;
         player.jumpEvent.OnJump += JumpEvent_OnJump;
         player.fallingEvent.OnFallEvent += FallingEvent_OnFallEvent;
     }
@@ -27,7 +30,6 @@ public class AnimatePlayer : MonoBehaviour
     {
         player.movementByVelocityEvent.OnMovementByVelocity -= MovementByVelocityEvent_OnMovementByVelocity;
         player.idleEvent.OnIdle -= IdleEvent_OnIdle;
-        player.aimWeaponEvent.OnAimWeapon -= AimWeaponEvent_OnAimWeapon;
         player.jumpEvent.OnJump -= JumpEvent_OnJump;
         player.fallingEvent.OnFallEvent -= FallingEvent_OnFallEvent;
     }
@@ -45,31 +47,31 @@ public class AnimatePlayer : MonoBehaviour
 
     public void MovementByVelocityEvent_OnMovementByVelocity(MovementByVelocityEvent movementByVelocityEvent, MovementByVelocityEventArgs movementByVelocityEventArgs)
     {
-        if (movementByVelocityEventArgs.isBackwards)
+        if (movementByVelocityEventArgs.IsFacingRight)
         {
             SetMovementAnimationParameters();
 
         }
         else
         {
-            SetBackwardsMovementAnimationParametrs();
+            SetLeftMovementAnimationParameters();
         }
 
     }
 
-    public void IdleEvent_OnIdle(IdleEvent idleEvent)
+    public void IdleEvent_OnIdle(IdleEvent idleEvent, IdleEventArgs idleEventArgs)
     {
-        SetIdleAnimationParameters();
+        if (idleEventArgs.IsFacingRight)
+            SetIdleAnimationParameters();
+        else
+            SetLeftIdleAnimationParameters();
     }
 
-    public void AimWeaponEvent_OnAimWeapon(AimWeaponEvent aimWeaponEvent, AimWeaponEventArgs aimWeaponEventArgs)
-    {
-        InitializeAimAnimationParameters();
-        SetAimWeaponAnimationParameters(aimWeaponEventArgs.aimDirection);
-    }
+
 
     private void SetJumpAnimationParameters()
     {
+
         player.animator.SetBool(Settings.isMoving, false);
         player.animator.SetBool(Settings.isIdle, false);
         player.animator.SetBool(Settings.isJumping, true);
@@ -82,21 +84,22 @@ public class AnimatePlayer : MonoBehaviour
         player.animator.SetBool(Settings.isJumping, false);
         player.animator.SetBool(Settings.isIdle, false);
         player.animator.SetBool(Settings.isFalling, false);
+        player.animator.SetBool(Settings.isFacingRight, true);
 
     }
-
-    private void SetBackwardsMovementAnimationParametrs()
+    private void SetLeftMovementAnimationParameters()
     {
         player.animator.SetBool(Settings.isMoving, true);
         player.animator.SetBool(Settings.isJumping, false);
         player.animator.SetBool(Settings.isIdle, false);
         player.animator.SetBool(Settings.isFalling, false);
-        player.animator.SetBool(Settings.isBackwards, true);
-    }
+        player.animator.SetBool(Settings.isFacingRight, false);
 
+    }
 
     private void SetJumpFallAnimationParameters()
     {
+
         player.animator.SetBool(Settings.isMoving, false);
         player.animator.SetBool(Settings.isIdle, false);
         player.animator.SetBool(Settings.isJumping, false);
@@ -104,39 +107,22 @@ public class AnimatePlayer : MonoBehaviour
 
     }
 
-
     private void SetIdleAnimationParameters()
     {
         player.animator.SetBool(Settings.isMoving, false);
         player.animator.SetBool(Settings.isJumping, false);
         player.animator.SetBool(Settings.isIdle, true);
         player.animator.SetBool(Settings.isFalling, false);
-        player.animator.SetBool(Settings.isBackwards, false);
+        player.animator.SetBool(Settings.isFacingRight, true);
     }
-
-    private void InitializeAimAnimationParameters()
+    private void SetLeftIdleAnimationParameters()
     {
-        player.animator.SetBool(Settings.aimLeft, false);
-        player.animator.SetBool(Settings.aimRight, false);
+        player.animator.SetBool(Settings.isMoving, false);
+        player.animator.SetBool(Settings.isJumping, false);
+        player.animator.SetBool(Settings.isIdle, true);
+        player.animator.SetBool(Settings.isFalling, false);
+        player.animator.SetBool(Settings.isFacingRight, false);
     }
 
-
-
-
-    private void SetAimWeaponAnimationParameters(AimDirection aimDirection)
-    {
-        switch (aimDirection)
-        {
-            case AimDirection.Left:
-                player.animator.SetBool(Settings.aimLeft, true);
-                break;
-            case AimDirection.Right:
-                player.animator.SetBool(Settings.aimRight, true);
-                break;
-            default:
-                player.animator.SetBool(Settings.aimRight, true);
-                break;
-        }
-    }
 
 }
