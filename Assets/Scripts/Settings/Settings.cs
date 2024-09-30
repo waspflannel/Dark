@@ -12,7 +12,7 @@ public static class Settings
     public static int isMoving = Animator.StringToHash("isMoving");
     public static int isJumping = Animator.StringToHash("isJumping");
     public static int isFalling = Animator.StringToHash("isFalling");
-    public static int isBackwards = Animator.StringToHash("isBackwards");
+    public static int isFacingRight = Animator.StringToHash("isFacingRight");
     #endregion Animation Parameters
 
     public static int playerInitialInventoryCapacity = 24;

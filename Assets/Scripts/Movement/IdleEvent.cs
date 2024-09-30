@@ -6,11 +6,17 @@ using UnityEngine;
 [DisallowMultipleComponent]
 public class IdleEvent : MonoBehaviour
 {
-    public event Action<IdleEvent> OnIdle;
+    public event Action<IdleEvent , IdleEventArgs> OnIdle;
 
-    public void CallIdleEvent()
+    public void CallIdleEvent(bool IsFacingRight)
     {
-        OnIdle?.Invoke(this);
+        OnIdle?.Invoke(this , new IdleEventArgs { IsFacingRight = IsFacingRight } );
     }
 
+
+
+}
+public class IdleEventArgs : EventArgs
+{
+    public bool IsFacingRight;
 }

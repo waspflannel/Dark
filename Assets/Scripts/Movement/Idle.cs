@@ -27,7 +27,7 @@ public class Idle : MonoBehaviour
         idleEvent.OnIdle -= IdleEvent_OnIdle;
     }
 
-    private void IdleEvent_OnIdle(IdleEvent idleEvent)
+    private void IdleEvent_OnIdle(IdleEvent idleEvent , IdleEventArgs idleEventArgs)
     {
         
         MoveRigidBody();
