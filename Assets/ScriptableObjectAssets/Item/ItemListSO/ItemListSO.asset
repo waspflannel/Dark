@@ -23,3 +23,13 @@ MonoBehaviour:
     canBeDropped: 1
     canBeEaten: 0
     canBePlaced: 0
+  - itemCode: 2
+    itemType: 0
+    itemName: Executioners Axe
+    itemDescription: Gives a buff to  Damage
+    itemSprite: {fileID: -1612267547, guid: 9aece8a02c89fb243a05102e4623e87c, type: 3}
+    itemUseGridRadius: 0
+    canBePickedUp: 1
+    canBeDropped: 1
+    canBeEaten: 0
+    canBePlaced: 0

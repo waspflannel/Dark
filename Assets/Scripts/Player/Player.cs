@@ -20,6 +20,7 @@ using UnityEngine.Rendering;
 [RequireComponent(typeof(AnimatePlayer))]
 [RequireComponent(typeof(MovementByVelocity))]
 [RequireComponent(typeof(MovementByVelocityEvent))]
+[RequireComponent(typeof(AttackEvent))]
 
 [RequireComponent(typeof(FallingEvent))]
 [RequireComponent(typeof(InventoryUpdateEvent))]
@@ -38,6 +39,7 @@ public class Player : MonoBehaviour
     [HideInInspector] public Animator animator;
     [HideInInspector] public FallingEvent fallingEvent;
     [HideInInspector] public InventoryUpdateEvent inventoryUpdateEvent;
+    [HideInInspector] public AttackEvent attackEvent;
 
     private void Awake()
     {
@@ -50,6 +52,7 @@ public class Player : MonoBehaviour
         animator = GetComponent<Animator>();
         movementByVelocityEvent = GetComponent<MovementByVelocityEvent>();
         fallingEvent = GetComponent<FallingEvent>();
+        attackEvent = GetComponent<AttackEvent>();
 
     }
 

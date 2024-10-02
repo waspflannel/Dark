@@ -11,6 +11,7 @@ public class PlayerControl : MonoBehaviour
 
     public Rigidbody2D rb { get; private set; }
     public bool IsFacingRight { get; private set; } = true;
+    public bool IsAttacking { get; private set; } = false;
     public bool IsJumping { get; private set; }
     public bool isInAir { get; private set; }
     public float LastOnGroundTime { get; private set; }
@@ -64,7 +65,7 @@ public class PlayerControl : MonoBehaviour
         direction = new Vector2(horizontalMovement, 0);
         IsFacingRight = CheckFaceDirection(horizontalMovement);
         Debug.Log(IsFacingRight);
-        if (direction != Vector2.zero && !isInAir)
+        if (direction != Vector2.zero && !isInAir && !IsAttacking)
         {
             player.movementByVelocityEvent.CallMovementByVelocityEvent(direction, moveSpeed, IsJumping, _isJumpFalling, LastOnGroundTime , IsFacingRight);
         }
@@ -85,8 +86,20 @@ public class PlayerControl : MonoBehaviour
             OnJumpInput();
         }
 
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            OnAttackInput();
+        }
+
         CheckGroundStatus();
 
+        CheckParamatersAndInitiateJump();
+
+        AdjustGravityAndVelocity();
+    }
+
+    private void CheckParamatersAndInitiateJump()
+    {
         if (IsJumping && rb.velocity.y < 0)
         {
             _isJumpFalling = true;
@@ -103,8 +116,6 @@ public class PlayerControl : MonoBehaviour
         {
             PerformJump();
         }
-
-        AdjustGravityAndVelocity();
     }
 
     private bool CheckFaceDirection(float horizontalMovement)
@@ -168,6 +179,17 @@ public class PlayerControl : MonoBehaviour
     {
         LastPressedJumpTime = movementDetails.jumpInputBufferTime;
         player.jumpEvent.CallJumpEvent(IsJumping, _isJumpFalling, LastOnGroundTime);
+    }
+    public void OnAttackInput()
+    {
+        IsAttacking = true;
+        player.attackEvent.CallAttackEvent(IsAttacking);
+    }
+
+
+    private void OnAttackFinished()
+    {
+        IsAttacking = false;
     }
 
     private void PerformJump()

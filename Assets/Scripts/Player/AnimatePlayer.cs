@@ -24,6 +24,7 @@ public class AnimatePlayer : MonoBehaviour
         player.idleEvent.OnIdle += IdleEvent_OnIdle;
         player.jumpEvent.OnJump += JumpEvent_OnJump;
         player.fallingEvent.OnFallEvent += FallingEvent_OnFallEvent;
+        player.attackEvent.OnAttack += AttackEvent_OnAttack;
     }
 
     private void OnDisable()
@@ -32,8 +33,14 @@ public class AnimatePlayer : MonoBehaviour
         player.idleEvent.OnIdle -= IdleEvent_OnIdle;
         player.jumpEvent.OnJump -= JumpEvent_OnJump;
         player.fallingEvent.OnFallEvent -= FallingEvent_OnFallEvent;
+        player.attackEvent.OnAttack -= AttackEvent_OnAttack;
     }
 
+    private void AttackEvent_OnAttack(AttackEvent attack , AttackEventArgs attackEventArgs)
+    {
+        SetAttackAnimationParameters();
+
+    }
     private void FallingEvent_OnFallEvent(FallingEvent fallingEvent, FallingEventArgs fallingEventArgs)
     {
         if (fallingEventArgs._isJumpFalling)
@@ -68,6 +75,15 @@ public class AnimatePlayer : MonoBehaviour
     }
 
 
+    public void SetAttackAnimationParameters()
+    {
+        player.animator.SetBool(Settings.isAttacking , true);
+    }
+    public void OnAttackAnimationEnd()
+    {
+        Debug.Log("Attack animation finished.");
+        player.animator.SetBool(Settings.isAttacking, false);  // Reset the attack state
+    }
 
     private void SetJumpAnimationParameters()
     {
