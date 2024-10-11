@@ -1066,6 +1066,8 @@ MonoBehaviour:
   LevelList:
   - {fileID: 11400000, guid: c4f92fd912f4d4c4a89c903aef42d2f1, type: 2}
   currentLevelIndex: 0
+  useSpear: 0
+  useSword: 1
 --- !u!4 &1593209278
 Transform:
   m_ObjectHideFlags: 0

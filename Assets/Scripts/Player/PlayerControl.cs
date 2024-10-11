@@ -18,6 +18,9 @@ public class PlayerControl : MonoBehaviour
     public float LastPressedJumpTime { get; private set; }
 
 
+    private bool useSpear = false;
+    private bool useSword = true;
+
     private bool _isJumpFalling;
 
     [SerializeField] private Transform _groundCheckPoint;
@@ -63,10 +66,9 @@ public class PlayerControl : MonoBehaviour
     private void FixedUpdate()
     {
         direction = new Vector2(horizontalMovement, 0);
-        IsFacingRight = CheckFaceDirection(horizontalMovement);
-        Debug.Log(IsFacingRight);
         if (direction != Vector2.zero && !isInAir && !IsAttacking)
         {
+            IsFacingRight = CheckFaceDirection(horizontalMovement);
             player.movementByVelocityEvent.CallMovementByVelocityEvent(direction, moveSpeed, IsJumping, _isJumpFalling, LastOnGroundTime , IsFacingRight);
         }
         else if (!isInAir)
@@ -86,7 +88,7 @@ public class PlayerControl : MonoBehaviour
             OnJumpInput();
         }
 
-        if (Input.GetKeyDown(KeyCode.Z))
+        if (Input.GetKeyDown(KeyCode.Keypad1) && !IsAttacking)
         {
             OnAttackInput();
         }
@@ -183,7 +185,7 @@ public class PlayerControl : MonoBehaviour
     public void OnAttackInput()
     {
         IsAttacking = true;
-        player.attackEvent.CallAttackEvent(IsAttacking);
+        player.attackEvent.CallAttackEvent(IsAttacking , useSpear , useSword);
     }
 
 

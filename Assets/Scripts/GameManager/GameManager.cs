@@ -8,6 +8,10 @@ public class GameManager : SingletonMonobehavoiur<GameManager>
     [SerializeField] private List<DungeonLevelSO> LevelList;
 
     [SerializeField] private int currentLevelIndex = 0;
+    public bool useSpear;
+    public bool useSword;
+
+
     private GameState gameState;
 
 

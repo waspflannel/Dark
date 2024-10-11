@@ -38,7 +38,7 @@ public class AnimatePlayer : MonoBehaviour
 
     private void AttackEvent_OnAttack(AttackEvent attack , AttackEventArgs attackEventArgs)
     {
-        SetAttackAnimationParameters();
+        SetAttackAnimationParameters(attackEventArgs);
 
     }
     private void FallingEvent_OnFallEvent(FallingEvent fallingEvent, FallingEventArgs fallingEventArgs)
@@ -75,13 +75,20 @@ public class AnimatePlayer : MonoBehaviour
     }
 
 
-    public void SetAttackAnimationParameters()
+    public void SetAttackAnimationParameters(AttackEventArgs attackEventArgs)
     {
+        if (attackEventArgs.isSpearActive)
+        {
+            player.animator.SetBool(Settings.isSpearActive, true);
+        }
+        if (attackEventArgs.isSwordActive)
+        {
+            player.animator.SetBool(Settings.isSwordActive, true);
+        }
         player.animator.SetBool(Settings.isAttacking , true);
     }
     public void OnAttackAnimationEnd()
     {
-        Debug.Log("Attack animation finished.");
         player.animator.SetBool(Settings.isAttacking, false);  // Reset the attack state
     }
 

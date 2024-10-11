@@ -15,6 +15,8 @@ public static class Settings
     public static int isFacingRight = Animator.StringToHash("isFacingRight");
 
     public static int isAttacking = Animator.StringToHash("isAttacking");
+    public static int isSwordActive = Animator.StringToHash("SwordEquiped");
+    public static int isSpearActive = Animator.StringToHash("SpearEquiped");
     #endregion Animation Parameters
 
     public static int playerInitialInventoryCapacity = 24;
